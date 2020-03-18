@@ -1,0 +1,102 @@
+{% extends "Layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="{{ url_for('predict') }}">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <div class="form-group">
+                    {{ form.no_of_passengers.label(class = "form-control-label") }}
+                    {{ form.no_of_passengers(class = "form-control browser-default custom-select") }}
+                </div>
+                <div class="form-group">
+                    {{ form.dt.label(class = "form-control-label") }}
+                    {% if form.dt.errors %}
+                        {{ form.dt(class = "form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.dt.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.dt(class = "form-control") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.cab_vendor.label(class = "form-control-label") }}
+                    {{ form.cab_vendor(class = "form-control browser-default custom-select") }}
+                </div>
+                <div class="form-group">
+                    {{ form.pickup_longitude.label(class = "form-control-label") }}
+                    {% if form.pickup_longitude.errors %}
+                        {{ form.pickup_longitude(class = "form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.pickup_longitude.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.pickup_longitude(class = "form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.pickup_latitude.label(class = "form-control-label") }}
+                    {% if form.pickup_latitude.errors %}
+                        {{ form.pickup_latitude(class = "form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.pickup_latitude.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.pickup_latitude(class = "form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.dropoff_longitude.label(class = "form-control-label") }}
+                    {% if form.dropoff_longitude.errors %}
+                        {{ form.dropoff_longitude(class = "form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.dropoff_longitude.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.dropoff_longitude(class = "form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.dropoff_latitude.label(class = "form-control-label") }}
+                    {% if form.dropoff_latitude.errors %}
+                        {{ form.dropoff_latitude(class = "form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.dropoff_latitude.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.dropoff_latitude(class = "form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.store_and_fwd_flag.label(class = "form-control-label") }}
+                    {% if form.store_and_fwd_flag.errors %}
+                        {{ form.store_and_fwd_flag(class = "form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.store_and_fwd_flag.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.store_and_fwd_flag(class = "form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class = "btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}
+{% block result %}
+<h2>{{ predicted_result }}</h2>
+{% endblock result %}
